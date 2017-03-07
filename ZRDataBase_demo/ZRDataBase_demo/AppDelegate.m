@@ -19,7 +19,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     self.window = [[UIWindow alloc] init];
-    self.window.rootViewController = [[ZRViewController alloc] init];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:[[ZRViewController alloc] init]];
+    self.window.rootViewController = navigationController;
     
     [self.window makeKeyAndVisible];
     

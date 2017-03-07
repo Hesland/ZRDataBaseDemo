@@ -7,12 +7,15 @@
 //
 
 #import "ZRTableViewController.h"
+#import "ZRTableViewCell.h"
 #import "FMDatabase.h"
+#import "Masonry.h"
+
+static NSString *ID = @"ZRTableViewCellIdentifer";
 
 @interface ZRTableViewController ()
 
 @property (nonatomic, strong) FMDatabase *db;
-
 
 @end
 
@@ -25,67 +28,14 @@
 }
 
 - (void)setupUI {
-    self.view.backgroundColor = [UIColor redColor];
-    
-    [self zr_testWithFMDB];
+    self.view.backgroundColor = [UIColor whiteColor];
     
 }
 
-/// FMDB初体验
-- (void)zr_testWithFMDB {
-    
-    NSString *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).lastObject;
-    NSString *dbPath = [path stringByAppendingPathComponent:@"FMDB.db"];
-    FMDatabase *db = [FMDatabase databaseWithPath:dbPath];
-    if ([db open]) {
-        NSLog(@"db开启成功");
-        self.db = db;
-        
-        // 更新db
-        // 1.创建表
-        NSString *createStr = @"create table mytable(num integer,name varchar(7),sex char(1),primary key(num));";
-        BOOL create_res = [self.db executeUpdate:createStr];
-        if (!create_res) {
-            NSLog(@"error when creating database table");
-            [self.db close];
-        }
-        
-        // 2.插入
-        NSString *insertStr = @"insert into mytable(num,name,sex) values(0,'zhaoran','m');";
-        BOOL insert_res = [self.db executeUpdate:insertStr];
-        if (!insert_res) {
-            NSLog(@"error when creating database table");
-            [self.db close];
-        }
-        
-        
-    }
-    
-    
+- (void)exitCurrentViewController {
+    [[UIApplication sharedApplication].windows.lastObject.subviews.lastObject removeFromSuperview];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
-
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    //执行查询SQL语句，返回查询结果
-    FMResultSet *result = [self.db executeQuery:@"select * from mytable"];
-    NSMutableArray *array = [NSMutableArray array];
-    //获取查询结果的下一个记录
-    while ([result next]) {
-        //根据字段名，获取记录的值，存储到字典中
-        NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-        int num  = [result intForColumn:@"num"];
-        NSString *name = [result stringForColumn:@"name"];
-        NSString *sex  = [result stringForColumn:@"sex"];
-        dict[@"num"] = @(num);
-        dict[@"name"] = name;
-        dict[@"sex"] = sex;
-        //把字典添加进数组中
-        [array addObject:dict];
-    }
-    
-    NSLog(@"%@", array);
-}
-
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -94,67 +44,47 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 0;
+    return self.personList.count;
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
     
-    // Configure the cell...
-    
+    ZRTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+    if (cell == nil) {
+        cell = [[ZRTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+    }
+    cell.model = self.personList[indexPath.row];
     return cell;
 }
-*/
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 80;
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+- (NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewRowAction *delete = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive
+                                                                      title:@"删除"
+                                                                    handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath)
+    {
+        UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"删除" message:@"确定要删除该条数据？" preferredStyle:UIAlertControllerStyleActionSheet];
+        
+        UIAlertAction *okay = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+            // 想了想，还是用代理方法搞定数据删除好了。今晚先写到这里。
+        }];
+        
+        UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+        [controller addAction:okay];
+        [controller addAction:cancel];
+        
+        [self presentViewController:controller animated:YES completion:nil];
+    }];
+    
+    return [NSArray arrayWithObject:delete];
 }
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

@@ -10,4 +10,7 @@
 
 @interface ZRTableViewController : UITableViewController
 
+@property (nonatomic, strong) NSMutableArray *personList;
+
+
 @end

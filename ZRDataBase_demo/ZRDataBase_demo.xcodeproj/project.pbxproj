@@ -14,6 +14,8 @@
 		9017FF071E6D5DE900DBC577 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9017FF051E6D5DE900DBC577 /* LaunchScreen.storyboard */; };
 		90EED7F61E6D7B96009938F2 /* ZRViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90EED7F51E6D7B96009938F2 /* ZRViewController.m */; };
 		90EED7F91E6D7F36009938F2 /* ZRTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90EED7F81E6D7F36009938F2 /* ZRTableViewController.m */; };
+		90EED7FC1E6EE7CD009938F2 /* ZRPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 90EED7FB1E6EE7CD009938F2 /* ZRPerson.m */; };
+		90EED7FF1E6EF5D1009938F2 /* ZRTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 90EED7FE1E6EF5D1009938F2 /* ZRTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +33,10 @@
 		90EED7F51E6D7B96009938F2 /* ZRViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZRViewController.m; sourceTree = "<group>"; };
 		90EED7F71E6D7F36009938F2 /* ZRTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZRTableViewController.h; sourceTree = "<group>"; };
 		90EED7F81E6D7F36009938F2 /* ZRTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZRTableViewController.m; sourceTree = "<group>"; };
+		90EED7FA1E6EE7CD009938F2 /* ZRPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZRPerson.h; sourceTree = "<group>"; };
+		90EED7FB1E6EE7CD009938F2 /* ZRPerson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZRPerson.m; sourceTree = "<group>"; };
+		90EED7FD1E6EF5D1009938F2 /* ZRTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZRTableViewCell.h; sourceTree = "<group>"; };
+		90EED7FE1E6EF5D1009938F2 /* ZRTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZRTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,8 +84,12 @@
 				9017FEFB1E6D5DE900DBC577 /* AppDelegate.m */,
 				90EED7F41E6D7B96009938F2 /* ZRViewController.h */,
 				90EED7F51E6D7B96009938F2 /* ZRViewController.m */,
+				90EED7FA1E6EE7CD009938F2 /* ZRPerson.h */,
+				90EED7FB1E6EE7CD009938F2 /* ZRPerson.m */,
 				90EED7F71E6D7F36009938F2 /* ZRTableViewController.h */,
 				90EED7F81E6D7F36009938F2 /* ZRTableViewController.m */,
+				90EED7FD1E6EF5D1009938F2 /* ZRTableViewCell.h */,
+				90EED7FE1E6EF5D1009938F2 /* ZRTableViewCell.m */,
 				9017FF031E6D5DE900DBC577 /* Assets.xcassets */,
 				9017FF051E6D5DE900DBC577 /* LaunchScreen.storyboard */,
 				9017FF081E6D5DE900DBC577 /* Info.plist */,
@@ -229,7 +239,9 @@
 				9017FEFC1E6D5DE900DBC577 /* AppDelegate.m in Sources */,
 				90EED7F91E6D7F36009938F2 /* ZRTableViewController.m in Sources */,
 				9017FEF91E6D5DE900DBC577 /* main.m in Sources */,
+				90EED7FC1E6EE7CD009938F2 /* ZRPerson.m in Sources */,
 				90EED7F61E6D7B96009938F2 /* ZRViewController.m in Sources */,
+				90EED7FF1E6EF5D1009938F2 /* ZRTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
