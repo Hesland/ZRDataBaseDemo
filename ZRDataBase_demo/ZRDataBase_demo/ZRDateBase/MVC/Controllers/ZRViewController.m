@@ -40,14 +40,15 @@
     [self setupUI];
 }
 
+#pragma mark - FMDB
+
 - (void)openDataBase {
     NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).lastObject stringByAppendingPathComponent:@"persons.db"];
-
-    FMDatabase *personsDB = [FMDatabase databaseWithPath:path];
+    FMDatabase *personsDB = [FMDatabase databaseWithPath:path];  // 从此可见，根本不需要用单例来继续锁定db对象了，而只需要确定db的路径即可获取到对应的db，并生成一个线程安全的操作队列
+//    FMDatabaseQueue *personDBQueue = [FMDatabaseQueue databaseQueueWithPath:path];
     if ([personsDB open]) {
         NSLog(@"数据库已经打开");
         self.db = personsDB;
-        
         NSString *selectTableStr = @"select * from sqlite_master where type = 'table' and name = 'persons';";
         FMResultSet *result_table = [self.db executeQuery:selectTableStr];
         if (![result_table next]) {
@@ -61,17 +62,15 @@
         NSString *seleteEnumStr = @"select * from persons;";
         FMResultSet *result_enum = [self.db executeQuery:seleteEnumStr];
         NSMutableArray *array_tmp = [NSMutableArray array];
-        
+
         while ([result_enum next]) {
             NSInteger age = (NSInteger)[result_enum intForColumn:@"age"];
             NSInteger num = (NSInteger)[result_enum intForColumn:@"num"];
             NSString *name = [result_enum stringForColumn:@"name"];
             NSString *address = [result_enum stringForColumn:@"address"];
             ZRPerson *person = [[ZRPerson alloc] initWithName:name age:age address:address num:num];
-            
             [array_tmp addObject:person];
         }
-        
         self.personList = [array_tmp mutableCopy];
     }
     
@@ -80,15 +79,13 @@
 }
 
 - (void)insertData {
-    
     ZRPerson *lastPerson = self.personList.lastObject;
-    
     ZRPerson *person = [[ZRPerson alloc] initWithName:self.nameF.text
                                                   age:self.ageF.text.integerValue
                                               address:self.addressF.text
                                                   num:lastPerson.num + 1];
     if ([self.db open]) {
-        NSString *insertStr = [NSString stringWithFormat:@"insert into persons(num ,name, age, address) values(%lu,'%@',%@,'%@')", lastPerson.num + 1, self.nameF.text, self.ageF.text, self.addressF.text];
+        NSString *insertStr = [NSString stringWithFormat:@"insert into persons(num ,name, age, address) values(%lu,'%@',%@,'%@');", lastPerson.num + 1, self.nameF.text, self.ageF.text, self.addressF.text];
         if ([self.db executeUpdate:insertStr]) {
             NSLog(@"插入成功");
             [self.personList addObject:person];
@@ -107,7 +104,7 @@
 - (void)deleteData:(NSInteger)index {
     if ([self.db open]) {
         ZRPerson *person = self.personList[index];
-        NSString *deleteStr = [NSString stringWithFormat:@"delete from persons where num = %lu",person.num];
+        NSString *deleteStr = [NSString stringWithFormat:@"delete from persons where num = %lu;",person.num];
         if ([self.db executeUpdate:deleteStr]) {
             NSLog(@"删除成功");
             [self.personList removeObjectAtIndex:index];
@@ -122,6 +119,7 @@
     [self deleteData:indexPath.row];
 }
 
+#pragma mark - UI
 - (void)setupUI {
     
     self.view.backgroundColor = [UIColor whiteColor];
@@ -171,8 +169,6 @@
     [self.view addSubview:self.addressF];
     [self.view addSubview:self.interButton];
     [self.view addSubview:self.showButton];
-    
-    
     
     [self.name mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.view).offset(30);

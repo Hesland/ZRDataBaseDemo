@@ -29,7 +29,6 @@ static NSString *ID = @"ZRTableViewCellIdentifer";
 
 - (void)setupUI {
     self.view.backgroundColor = [UIColor whiteColor];
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -47,7 +46,6 @@ static NSString *ID = @"ZRTableViewCellIdentifer";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     ZRTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
     if (cell == nil) {
         cell = [[ZRTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
@@ -56,6 +54,7 @@ static NSString *ID = @"ZRTableViewCellIdentifer";
     return cell;
 }
 
+#pragma mark - TableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 80;
 }
@@ -72,7 +71,6 @@ static NSString *ID = @"ZRTableViewCellIdentifer";
         [controller addAction:cancel];
         [self presentViewController:controller animated:YES completion:nil];
     }];
-    
     return [NSArray arrayWithObject:delete];
 }
 

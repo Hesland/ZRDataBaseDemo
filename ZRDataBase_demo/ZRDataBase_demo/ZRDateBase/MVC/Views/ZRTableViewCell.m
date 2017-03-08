@@ -22,7 +22,6 @@
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        
         self.name = [[UILabel alloc] init];
         self.age = [[UILabel alloc] init];
         self.address = [[UILabel alloc] init];
