@@ -14,11 +14,12 @@
 
 @implementation ZRPerson
 
-- (instancetype)initWithName:(NSString *)name age:(NSInteger)age address:(NSString *)address {
+- (instancetype)initWithName:(NSString *)name age:(NSInteger)age address:(NSString *)address num:(NSInteger)num{
     if (self = [super init]) {
         self.age = age;
         self.name = name;
         self.address = address;
+        self.num = num;
     }
     return self;
 }

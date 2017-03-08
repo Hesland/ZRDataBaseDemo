@@ -12,10 +12,7 @@
 #import "Masonry.h"
 #import "ZRPerson.h"
 
-
-
-@interface ZRViewController ()
-
+@interface ZRViewController () <ZRTableViewDelegate>
 
 @property (nonatomic, strong) FMDatabase *db;
 
@@ -30,13 +27,10 @@
 
 @property (nonatomic, strong) NSMutableArray *personList;
 
-
 @end
 
 
 @implementation ZRViewController
-
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -75,9 +69,10 @@
         
         while ([result_enum next]) {
             NSInteger age = (NSInteger)[result_enum intForColumn:@"age"];
+            NSInteger num = (NSInteger)[result_enum intForColumn:@"num"];
             NSString *name = [result_enum stringForColumn:@"name"];
             NSString *address = [result_enum stringForColumn:@"address"];
-            ZRPerson *person = [[ZRPerson alloc] initWithName:name age:age address:address];
+            ZRPerson *person = [[ZRPerson alloc] initWithName:name age:age address:address num:num];
             
             [array_tmp addObject:person];
         }
@@ -90,95 +85,46 @@
 }
 
 - (void)insertData {
+    
+    ZRPerson *lastPerson = self.personList.lastObject;
+    
     ZRPerson *person = [[ZRPerson alloc] initWithName:self.nameF.text
                                                   age:self.ageF.text.integerValue
-                                              address:self.addressF.text];
-    
+                                              address:self.addressF.text
+                                                  num:lastPerson.num + 1];
     if ([self.db open]) {
-        NSString *insertStr = [NSString stringWithFormat:@"insert into persons(num ,name, age, address) values(%lu,'%@',%@,'%@')", self.personList.count, self.nameF.text, self.ageF.text, self.addressF.text];
+        NSString *insertStr = [NSString stringWithFormat:@"insert into persons(num ,name, age, address) values(%lu,'%@',%@,'%@')", lastPerson.num + 1, self.nameF.text, self.ageF.text, self.addressF.text];
         if ([self.db executeUpdate:insertStr]) {
             NSLog(@"插入成功");
             [self.personList addObject:person];
+            [self.db close];
         }
-        
     }
 }
 
 - (void)showData {
     ZRTableViewController *tableViewController = [[ZRTableViewController alloc] init];
     tableViewController.personList = self.personList;
+    tableViewController.delegate = self;
     [self.navigationController pushViewController:tableViewController animated:YES];
 }
 
-/// FMDB初体验
-- (void)zr_testWithFMDB {
-    
-    NSString *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).lastObject;
-    NSString *dbPath = [path stringByAppendingPathComponent:@"FMDB.db"];
-    FMDatabase *db = [FMDatabase databaseWithPath:dbPath];
-    if ([db open]) {
-        NSLog(@"db开启成功");
-        self.db = db;
-        
-        // 更新db
-        // 1.创建表
-        NSString *createStr = @"create table mytable(num integer,name varchar(7),sex char(1),primary key(num));";
-        BOOL create_res = [self.db executeUpdate:createStr];
-        if (!create_res) {
-            NSLog(@"error when creating database table");
-            
-//            // 2.插入|新建
-//            NSString *insertStr = @"insert into mytable(num,name,sex) values(0,'zhaoran','m');";
-//            BOOL insert_res = [self.db executeUpdate:insertStr];
-//            if (!insert_res) {
-//                NSLog(@"error when inserting database table");
-//                [self.db close];
-//            }
-            
-//            // 3.修改数据
-//            NSString *updateStr = @"update mytable set name = 'Hesland' where num = 0;";
-//            BOOL update_res = [self.db executeUpdate:updateStr];
-//            if (!update_res) {
-//                NSLog(@"error when updating database table");
-//                [self.db close];
-//            }
-            
-            // 4.删除数据
-            // 昭然：貌似这里写的删除数据的字符串指令存在一些问题，删除不掉对应的数据
-            NSString *deleteStr = @"delete from members where num = 0;";
-            BOOL delete_res = [self.db executeUpdate:deleteStr];
-            if (!delete_res) {
-                NSLog(@"error when deleting database table");
-                [self.db close];
-            }
-            
+- (void)deleteData:(NSInteger)index {
+    if ([self.db open]) {
+        ZRPerson *person = self.personList[index];
+        NSString *deleteStr = [NSString stringWithFormat:@"delete from persons where num = %lu",person.num];
+        if ([self.db executeUpdate:deleteStr]) {
+            NSLog(@"删除成功");
+            [self.personList removeObjectAtIndex:index];
+            [self.db close];
         }
-        
     }
-    
-    
 }
 
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    //执行查询SQL语句，返回查询结果
-    FMResultSet *result = [self.db executeQuery:@"select * from mytable"];
-    NSMutableArray *array = [NSMutableArray array];
-    //获取查询结果的下一个记录
-    while ([result next]) {
-        //根据字段名，获取记录的值，存储到字典中
-        // 昭然：这里就是牵扯到需要用什么来接收数据库中查询到的数据了。至于是要用字典，还是要用MVC中设计出的模型，全看需要做的是什么事情，仅此而已。
-        NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-        int num  = [result intForColumn:@"num"];
-        NSString *name = [result stringForColumn:@"name"];
-        NSString *sex  = [result stringForColumn:@"sex"];
-        dict[@"num"] = @(num);
-        dict[@"name"] = name;
-        dict[@"sex"] = sex;
-        //把字典添加进数组中
-        [array addObject:dict];
-    }
-    
-    NSLog(@"%@", array);
+#pragma mark - ZRTableViewDelegate
+
+- (void)ZRTableViewDidDeleteDataAtIndexPath:(NSIndexPath *)indexPath {
+    [self deleteData:indexPath.row];
 }
 
 - (void)setupUI {
@@ -281,7 +227,6 @@
     }];
     
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -8,9 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol ZRTableViewDelegate <NSObject>
+
+- (void)ZRTableViewDidDeleteDataAtIndexPath:(NSIndexPath *)indexPath;
+
+@end
+
 @interface ZRTableViewController : UITableViewController
 
 @property (nonatomic, strong) NSMutableArray *personList;
-
+@property (nonatomic, weak) id<ZRTableViewDelegate> delegate;
 
 @end

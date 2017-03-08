@@ -32,11 +32,6 @@ static NSString *ID = @"ZRTableViewCellIdentifer";
     
 }
 
-- (void)exitCurrentViewController {
-    [[UIApplication sharedApplication].windows.lastObject.subviews.lastObject removeFromSuperview];
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
@@ -50,7 +45,6 @@ static NSString *ID = @"ZRTableViewCellIdentifer";
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.personList.count;
 }
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -67,20 +61,15 @@ static NSString *ID = @"ZRTableViewCellIdentifer";
 }
 
 - (NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewRowAction *delete = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive
-                                                                      title:@"删除"
-                                                                    handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath)
-    {
+    UITableViewRowAction *delete = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"删除" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
         UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"删除" message:@"确定要删除该条数据？" preferredStyle:UIAlertControllerStyleActionSheet];
-        
         UIAlertAction *okay = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
-            // 想了想，还是用代理方法搞定数据删除好了。今晚先写到这里。
+            [self.delegate ZRTableViewDidDeleteDataAtIndexPath:indexPath];
+            [self.tableView reloadData];
         }];
-        
         UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
         [controller addAction:okay];
         [controller addAction:cancel];
-        
         [self presentViewController:controller animated:YES completion:nil];
     }];
     
