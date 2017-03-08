@@ -9,6 +9,7 @@
 #import "ZRViewController.h"
 #import "ZRTableViewController.h"
 #import "FMDatabase.h"
+#import "FMDatabaseQueue.h"
 #import "Masonry.h"
 #import "ZRPerson.h"
 
@@ -34,12 +35,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    /**
-     1.展示UI时，就应当先开启数据库并查询全部数据。如果App第一次开启，应当先建立数据库并建立一个新表。（应该考虑的是数据量比较大时带来的I/O操作的卡顿问题）
-     2.根据获取的状态，进行下一步的预留操作
-     */
-    
     
     [self openDataBase];
     [self setupUI];
