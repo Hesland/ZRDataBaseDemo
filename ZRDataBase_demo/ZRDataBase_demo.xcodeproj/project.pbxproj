@@ -12,10 +12,10 @@
 		9017FEFC1E6D5DE900DBC577 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9017FEFB1E6D5DE900DBC577 /* AppDelegate.m */; };
 		9017FF041E6D5DE900DBC577 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9017FF031E6D5DE900DBC577 /* Assets.xcassets */; };
 		9017FF071E6D5DE900DBC577 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9017FF051E6D5DE900DBC577 /* LaunchScreen.storyboard */; };
-		90EED80D1E6FF787009938F2 /* ZRTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90EED8041E6FF787009938F2 /* ZRTableViewController.m */; };
-		90EED80E1E6FF787009938F2 /* ZRViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90EED8061E6FF787009938F2 /* ZRViewController.m */; };
-		90EED80F1E6FF787009938F2 /* ZRPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 90EED8091E6FF787009938F2 /* ZRPerson.m */; };
-		90EED8101E6FF787009938F2 /* ZRTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 90EED80C1E6FF787009938F2 /* ZRTableViewCell.m */; };
+		90EED83B1E6FF8FE009938F2 /* ZRTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 90EED82A1E6FF8FE009938F2 /* ZRTableViewCell.m */; };
+		90EED83C1E6FF8FE009938F2 /* ZRTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90EED82C1E6FF8FE009938F2 /* ZRTableViewController.m */; };
+		90EED83D1E6FF8FE009938F2 /* ZRViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90EED8361E6FF8FE009938F2 /* ZRViewController.m */; };
+		90EED83E1E6FF8FE009938F2 /* ZRPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 90EED8391E6FF8FE009938F2 /* ZRPerson.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,14 +29,14 @@
 		9017FF031E6D5DE900DBC577 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9017FF061E6D5DE900DBC577 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9017FF081E6D5DE900DBC577 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		90EED8031E6FF787009938F2 /* ZRTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZRTableViewController.h; sourceTree = "<group>"; };
-		90EED8041E6FF787009938F2 /* ZRTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZRTableViewController.m; sourceTree = "<group>"; };
-		90EED8051E6FF787009938F2 /* ZRViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZRViewController.h; sourceTree = "<group>"; };
-		90EED8061E6FF787009938F2 /* ZRViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZRViewController.m; sourceTree = "<group>"; };
-		90EED8081E6FF787009938F2 /* ZRPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZRPerson.h; sourceTree = "<group>"; };
-		90EED8091E6FF787009938F2 /* ZRPerson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZRPerson.m; sourceTree = "<group>"; };
-		90EED80B1E6FF787009938F2 /* ZRTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZRTableViewCell.h; sourceTree = "<group>"; };
-		90EED80C1E6FF787009938F2 /* ZRTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZRTableViewCell.m; sourceTree = "<group>"; };
+		90EED8291E6FF8FE009938F2 /* ZRTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZRTableViewCell.h; sourceTree = "<group>"; };
+		90EED82A1E6FF8FE009938F2 /* ZRTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZRTableViewCell.m; sourceTree = "<group>"; };
+		90EED82B1E6FF8FE009938F2 /* ZRTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZRTableViewController.h; sourceTree = "<group>"; };
+		90EED82C1E6FF8FE009938F2 /* ZRTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZRTableViewController.m; sourceTree = "<group>"; };
+		90EED8351E6FF8FE009938F2 /* ZRViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZRViewController.h; sourceTree = "<group>"; };
+		90EED8361E6FF8FE009938F2 /* ZRViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZRViewController.m; sourceTree = "<group>"; };
+		90EED8381E6FF8FE009938F2 /* ZRPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZRPerson.h; sourceTree = "<group>"; };
+		90EED8391E6FF8FE009938F2 /* ZRPerson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZRPerson.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,7 +80,9 @@
 		9017FEF61E6D5DE900DBC577 /* ZRDataBase_demo */ = {
 			isa = PBXGroup;
 			children = (
-				90EED8001E6FF787009938F2 /* ZRDateBase */,
+				90EED8281E6FF8FE009938F2 /* Common */,
+				90EED82D1E6FF8FE009938F2 /* ZRDataBaseQueue */,
+				90EED8321E6FF8FE009938F2 /* ZRDateBase */,
 				9017FEFA1E6D5DE900DBC577 /* AppDelegate.h */,
 				9017FEFB1E6D5DE900DBC577 /* AppDelegate.m */,
 				9017FF031E6D5DE900DBC577 /* Assets.xcassets */,
@@ -99,49 +101,95 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		90EED8001E6FF787009938F2 /* ZRDateBase */ = {
+		90EED8281E6FF8FE009938F2 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				90EED8011E6FF787009938F2 /* MVC */,
+				90EED8291E6FF8FE009938F2 /* ZRTableViewCell.h */,
+				90EED82A1E6FF8FE009938F2 /* ZRTableViewCell.m */,
+				90EED82B1E6FF8FE009938F2 /* ZRTableViewController.h */,
+				90EED82C1E6FF8FE009938F2 /* ZRTableViewController.m */,
 			);
-			path = ZRDateBase;
+			path = Common;
 			sourceTree = "<group>";
 		};
-		90EED8011E6FF787009938F2 /* MVC */ = {
+		90EED82D1E6FF8FE009938F2 /* ZRDataBaseQueue */ = {
 			isa = PBXGroup;
 			children = (
-				90EED8021E6FF787009938F2 /* Controllers */,
-				90EED8071E6FF787009938F2 /* Models */,
-				90EED80A1E6FF787009938F2 /* Views */,
+				90EED82E1E6FF8FE009938F2 /* MVC */,
+			);
+			path = ZRDataBaseQueue;
+			sourceTree = "<group>";
+		};
+		90EED82E1E6FF8FE009938F2 /* MVC */ = {
+			isa = PBXGroup;
+			children = (
+				90EED82F1E6FF8FE009938F2 /* Controllers */,
+				90EED8301E6FF8FE009938F2 /* Models */,
+				90EED8311E6FF8FE009938F2 /* Views */,
 			);
 			path = MVC;
 			sourceTree = "<group>";
 		};
-		90EED8021E6FF787009938F2 /* Controllers */ = {
+		90EED82F1E6FF8FE009938F2 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				90EED8031E6FF787009938F2 /* ZRTableViewController.h */,
-				90EED8041E6FF787009938F2 /* ZRTableViewController.m */,
-				90EED8051E6FF787009938F2 /* ZRViewController.h */,
-				90EED8061E6FF787009938F2 /* ZRViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
 		};
-		90EED8071E6FF787009938F2 /* Models */ = {
+		90EED8301E6FF8FE009938F2 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				90EED8081E6FF787009938F2 /* ZRPerson.h */,
-				90EED8091E6FF787009938F2 /* ZRPerson.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
 		};
-		90EED80A1E6FF787009938F2 /* Views */ = {
+		90EED8311E6FF8FE009938F2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				90EED80B1E6FF787009938F2 /* ZRTableViewCell.h */,
-				90EED80C1E6FF787009938F2 /* ZRTableViewCell.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		90EED8321E6FF8FE009938F2 /* ZRDateBase */ = {
+			isa = PBXGroup;
+			children = (
+				90EED8331E6FF8FE009938F2 /* MVC */,
+			);
+			path = ZRDateBase;
+			sourceTree = "<group>";
+		};
+		90EED8331E6FF8FE009938F2 /* MVC */ = {
+			isa = PBXGroup;
+			children = (
+				90EED8341E6FF8FE009938F2 /* Controllers */,
+				90EED8371E6FF8FE009938F2 /* Models */,
+				90EED83A1E6FF8FE009938F2 /* Views */,
+			);
+			path = MVC;
+			sourceTree = "<group>";
+		};
+		90EED8341E6FF8FE009938F2 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				90EED8351E6FF8FE009938F2 /* ZRViewController.h */,
+				90EED8361E6FF8FE009938F2 /* ZRViewController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		90EED8371E6FF8FE009938F2 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				90EED8381E6FF8FE009938F2 /* ZRPerson.h */,
+				90EED8391E6FF8FE009938F2 /* ZRPerson.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		90EED83A1E6FF8FE009938F2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -276,12 +324,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				90EED80E1E6FF787009938F2 /* ZRViewController.m in Sources */,
 				9017FEFC1E6D5DE900DBC577 /* AppDelegate.m in Sources */,
+				90EED83C1E6FF8FE009938F2 /* ZRTableViewController.m in Sources */,
 				9017FEF91E6D5DE900DBC577 /* main.m in Sources */,
-				90EED80F1E6FF787009938F2 /* ZRPerson.m in Sources */,
-				90EED80D1E6FF787009938F2 /* ZRTableViewController.m in Sources */,
-				90EED8101E6FF787009938F2 /* ZRTableViewCell.m in Sources */,
+				90EED83D1E6FF8FE009938F2 /* ZRViewController.m in Sources */,
+				90EED83E1E6FF8FE009938F2 /* ZRPerson.m in Sources */,
+				90EED83B1E6FF8FE009938F2 /* ZRTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
