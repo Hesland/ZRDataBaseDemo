@@ -14,6 +14,10 @@
 
 @implementation ZRPerson
 
++ (instancetype)persontWithName:(NSString *)name age:(NSInteger)age address:(NSString *)address num:(NSInteger)num {
+    return [[ZRPerson alloc] initWithName:name age:age address:address num:num];
+}
+
 - (instancetype)initWithName:(NSString *)name age:(NSInteger)age address:(NSString *)address num:(NSInteger)num{
     if (self = [super init]) {
         self.age = age;

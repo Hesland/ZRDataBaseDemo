@@ -7,6 +7,7 @@
 //
 
 #import "ZRTableViewCell.h"
+#import "ZRPerson.h"
 #import "Masonry.h"
 #import <objc/runtime.h>
 

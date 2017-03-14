@@ -7,26 +7,11 @@
 //
 
 #import "ZRViewController.h"
-#import "ZRTableViewController.h"
 #import "FMDatabase.h"
-#import "FMDatabaseQueue.h"
-#import "Masonry.h"
 #import "ZRPerson.h"
+#import "Masonry.h"
 
-@interface ZRViewController () <ZRTableViewDelegate>
-
-@property (nonatomic, strong) FMDatabase *db;
-
-@property (nonatomic, strong) UILabel *name;
-@property (nonatomic, strong) UILabel *age;
-@property (nonatomic, strong) UILabel *address;
-@property (nonatomic, strong) UITextField *nameF;
-@property (nonatomic, strong) UITextField *ageF;
-@property (nonatomic, strong) UITextField *addressF;
-@property (nonatomic, strong) UIButton *interButton;
-@property (nonatomic, strong) UIButton *showButton;
-
-@property (nonatomic, strong) NSMutableArray *personList;
+@interface ZRViewController () 
 
 @end
 
@@ -45,7 +30,6 @@
 - (void)openDataBase {
     NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).lastObject stringByAppendingPathComponent:@"persons.db"];
     FMDatabase *personsDB = [FMDatabase databaseWithPath:path];  // 从此可见，根本不需要用单例来继续锁定db对象了，而只需要确定db的路径即可获取到对应的db，并生成一个线程安全的操作队列
-//    FMDatabaseQueue *personDBQueue = [FMDatabaseQueue databaseQueueWithPath:path];
     if ([personsDB open]) {
         NSLog(@"数据库已经打开");
         self.db = personsDB;
@@ -58,11 +42,9 @@
                 NSLog(@"persons表创建成功");
             }
         }
-        
         NSString *seleteEnumStr = @"select * from persons;";
         FMResultSet *result_enum = [self.db executeQuery:seleteEnumStr];
         NSMutableArray *array_tmp = [NSMutableArray array];
-
         while ([result_enum next]) {
             NSInteger age = (NSInteger)[result_enum intForColumn:@"age"];
             NSInteger num = (NSInteger)[result_enum intForColumn:@"num"];

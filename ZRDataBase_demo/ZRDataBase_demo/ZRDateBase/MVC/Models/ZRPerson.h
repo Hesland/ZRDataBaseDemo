@@ -15,7 +15,7 @@
 @property (nonatomic, copy) NSString *address;
 @property (nonatomic, assign) NSInteger num;
 
-
++ (instancetype)persontWithName:(NSString *)name age:(NSInteger)age address:(NSString *)address num:(NSInteger) num;
 - (instancetype)initWithName:(NSString *)name age:(NSInteger)age address:(NSString *)address num:(NSInteger) num;
 
 @end

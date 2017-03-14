@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "ZRViewController.h"
+#import "ZRMemberViewController.h"
 
 @interface AppDelegate ()
 
@@ -19,7 +20,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     self.window = [[UIWindow alloc] init];
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:[[ZRViewController alloc] init]];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:[[ZRMemberViewController alloc] init]];
     self.window.rootViewController = navigationController;
     
     [self.window makeKeyAndVisible];

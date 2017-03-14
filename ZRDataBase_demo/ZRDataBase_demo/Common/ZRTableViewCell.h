@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ZRPerson.h"
 
+@class ZRPerson;
 @interface ZRTableViewCell : UITableViewCell
 
 @property (nonatomic, strong) ZRPerson *model;
